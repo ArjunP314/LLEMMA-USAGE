@@ -1,31 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LLEMMA Model Interface</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>LLEMMA Model Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e9f0fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            font-size: 16px;
+            padding: 10px;
+            resize: none;
+        }
+        button {
+            width: 100%;
+            background: #3498db;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #prediction {
+            margin-top: 20px;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>LLEMMA Model Interface</h1>
-    <form id="mathForm">
-      <label for="problem">Enter a math problem:</label>
-      <textarea id="problem" name="problem" rows="4" required></textarea>
-      <button type="submit">Evaluate</button>
-    </form>
-    <div id="result">
-      <h2>Model Prediction:</h2>
-      <pre id="output"></pre>
+    <div class="container">
+        <h2>LLEMMA Model Interface</h2>
+        <label>Enter a math problem:</label>
+        <textarea id="inputProblem" placeholder="E.g., If you have 5 apples and eat 2, how many are left?"></textarea>
+        <button onclick="evaluateProblem()">Evaluate</button>
+        <h3>Model Prediction:</h3>
+        <div id="prediction">Waiting for input...</div>
     </div>
-  </div>
-  <script>
-    document.getElementById('mathForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const problem = document.getElementById('problem').value;
-      // Placeholder for actual model evaluation
-      document.getElementById('output').textContent = 'Evaluating: ' + problem;
-    });
-  </script>
+
+    <script>
+        async function evaluateProblem() {
+            const problem = document.getElementById("inputProblem").value;
+            document.getElementById("prediction").innerText = "⏳ Evaluating...";
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ problem }),
+            });
+
+            const data = await response.json();
+            document.getElementById("prediction").innerText = data.prediction;
+        }
+    </script>
 </body>
 </html>
