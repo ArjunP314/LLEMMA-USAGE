@@ -1,0 +1,115 @@
+/* Theme & Variables */
+:root {
+  --primary-color: #4a90e2;
+  --accent-color: #50e3c2;
+  --bg-gradient-start: #f5f7fa;
+  --bg-gradient-end: #c3cfe2;
+  --spacing-unit: 1rem;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+/* Global Reset & Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start),
+    var(--bg-gradient-end)
+  );
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-unit);
+}
+
+/* Container */
+.container {
+  background: #fff;
+  max-width: 480px;
+  width: 100%;
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Heading */
+.container h1 {
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
+  color: var(--primary-color);
+  font-size: 1.75rem;
+}
+
+/* Form Elements */
+#mathForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+#mathForm label {
+  text-align: left;
+  font-weight: 600;
+}
+
+#mathForm textarea {
+  resize: vertical;
+  padding: var(--spacing-unit);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color var(--transition-speed) ease;
+}
+
+#mathForm textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* Button */
+#mathForm button {
+  background: var(--primary-color);
+  color: #fff;
+  padding: var(--spacing-unit) 0;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background var(--transition-speed) ease,
+              transform var(--transition-speed) ease;
+}
+
+#mathForm button:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* Result Panel */
+#result {
+  margin-top: calc(var(--spacing-unit) * 2);
+  text-align: left;
+}
+
+#result h2 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-unit);
+  color: var(--primary-color);
+}
+
+#result pre {
+  background: #f0f4f8;
+  padding: var(--spacing-unit);
+  border-radius: var(--border-radius);
+  font-family: 'Courier New', monospace;
+  overflow-x: auto;
+}
