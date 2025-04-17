@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LLEMMA Model Interface</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>LLEMMA Model Interface</h1>
+    <form id="mathForm">
+      <label for="problem">Enter a math problem:</label>
+      <textarea id="problem" name="problem" rows="4" required></textarea>
+      <button type="submit">Evaluate</button>
+    </form>
+    <div id="result">
+      <h2>Model Prediction:</h2>
+      <pre id="output"></pre>
+    </div>
+  </div>
+  <script>
+    document.getElementById('mathForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const problem = document.getElementById('problem').value;
+      // Placeholder for actual model evaluation
+      document.getElementById('output').textContent = 'Evaluating: ' + problem;
+    });
+  </script>
+</body>
+</html>
